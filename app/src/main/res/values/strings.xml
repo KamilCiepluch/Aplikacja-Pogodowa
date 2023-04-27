@@ -1,0 +1,45 @@
+<resources>
+    <string name="app_name">Pogodynka</string>
+    <!-- TODO: Remove or change this placeholder text -->
+
+    <string name="update_time"> Updated: </string>
+    <string name="temp_max"> MIN: </string>
+    <string name="temp_min"> MIN: </string>
+    <string name="city_name">Krakow </string>
+    <string name="currentDate"> Obecna data: </string>
+    <string name="pressure">  Ciśnienie: </string>
+    <string name="windDir"> Kierunek Wiatru: </string>
+    <string name="windSpeed">Szybkosc Wiatru: </string>
+    <string name="Humidity"> Wilgotność: </string>
+    <string name="Visibility">Widocznośc: </string>
+
+
+
+    <string name="day1"> Mon</string>
+    <string name="day2"> Thu</string>
+    <string name="day3"> Wen</string>
+    <string name="day4"> Third</string>
+    <string name="day5"> Fri</string>
+    <string name="day6"> Sat</string>
+
+
+    <string name="weather1"> sun</string>
+    <string name="weather2"> rain</string>
+    <string name="weather3"> sun</string>
+    <string name="weather4"> sun</string>
+    <string name="weather5"> sun</string>
+    <string name="weather6"> rain</string>
+
+    <string name="temp1"> 20°C</string>
+    <string name="temp2"> 20°C</string>
+    <string name="temp3"> 20°C</string>
+    <string name="temp4"> 20°C</string>
+    <string name="temp5"> 20°C</string>
+    <string name="temp6"> 20°C</string>
+
+    <string name="buttonAdd"> add </string>
+    <string name="buttonRemove"> remove </string>
+    <string name="buttonSelect"> select </string>
+
+
+</resources>
