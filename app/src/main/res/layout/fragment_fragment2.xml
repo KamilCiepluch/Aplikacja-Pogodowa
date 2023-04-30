@@ -28,148 +28,14 @@
             android:layout_height="0dp"
             android:background="@color/transparent_black"
             android:orientation="vertical"
-
-            app:layout_constraintHeight="0.9"
             app:layout_constraintHeight_default="percent"
 
             app:layout_constraintWidth_default="percent"
             app:layout_constraintWidth_percent="0.9"
             app:layout_constraintEnd_toEndOf="parent"
-
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-
             app:layout_constraintBottom_toBottomOf="parent">
-
-
-            <TextView
-                android:id="@+id/city"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="0.2"
-                android:gravity="center"
-                android:maxLines="1"
-
-                android:text="@string/city_name"
-                android:textColor="@color/white"
-                app:autoSizeTextType="uniform" />
-
-            <TextView
-                android:id="@+id/city_coord"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="0.1"
-                android:gravity="center"
-                android:maxLines="1"
-
-
-                android:textColor="@color/white"
-                app:autoSizeTextType="uniform" />
-
-            <TextView
-                android:id="@+id/currentDate"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="0.1"
-                android:gravity="center"
-                android:maxLines="1"
-
-                android:text="@string/currentDate"
-                android:textColor="@color/white"
-                app:autoSizeTextType="uniform" />
-
-
-            <GridLayout
-                android:id="@+id/grid1"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="0.3"
-                android:columnCount="2"
-                android:rowCount="1">
-
-                <LinearLayout
-                    android:id="@+id/imagePart"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_columnWeight="0.5"
-                    android:orientation="vertical">
-                    <ImageView
-                        android:id="@+id/image"
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="0.8"
-                        android:gravity="center"
-                        android:src="@drawable/sun"
-                        android:textColor="@color/white"
-                        app:autoSizeTextType="uniform" />
-
-                    <TextView
-                        android:id="@+id/Weather_Status"
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="0.2"
-                        android:gravity="center"
-                        android:maxLines="1"
-
-                        android:textColor="@color/white"
-                        app:autoSizeTextType="uniform" />
-
-                </LinearLayout>
-
-
-                <LinearLayout
-                    android:id="@+id/temperaturePart"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_columnWeight="0.5"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/temp"
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="0.8"
-                        android:gravity="center"
-                        android:maxLines="1"
-
-                        android:textColor="@color/white"
-                        app:autoSizeTextType="uniform" />
-
-                    <LinearLayout
-                        android:id="@+id/temp_data"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.2"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:id="@+id/TempMax"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="0.5"
-                            android:gravity="center"
-                            android:maxLines="1"
-                            android:text="@string/temp_max"
-                            android:textColor="@color/white"
-                            app:autoSizeTextType="uniform" />
-
-                        <TextView
-                            android:id="@+id/TempMin"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="0.5"
-                            android:gravity="center"
-                            android:maxLines="1"
-                            android:text="@string/temp_min"
-                            android:textColor="@color/white"
-                            app:autoSizeTextType="uniform" />
-                    </LinearLayout>
-                </LinearLayout>
-
-            </GridLayout>
-
-
-
 
             <TextView
                 android:id="@+id/pressure"
@@ -225,39 +91,6 @@
                 android:text="@string/Visibility"
                 android:textColor="@color/white"
                 app:autoSizeTextType="uniform" />
-
-
-            <TextView
-                android:id="@+id/updateTime"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="0.1"
-                android:gravity="center"
-                android:maxLines="1"
-
-                android:text="@string/update_time"
-                android:textColor="@color/white"
-                app:autoSizeTextType="uniform"
-
-                />
-
-
-
-
         </LinearLayout>
-
-
-
-
-
-
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-
-
-
-
-
-
 </FrameLayout>

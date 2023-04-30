@@ -58,7 +58,6 @@ public class ListActivity extends AppCompatActivity {
                     String stringUrl =
                             "https://api.openweathermap.org/data/2.5/weather?q="+city+"&appid=f593804bcaa9ba0a3077e36ebf63bd6a";
 
-
                     JsonThread thread = new JsonThread(stringUrl);
                     thread.start();
                     try {
