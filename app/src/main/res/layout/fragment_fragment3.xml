@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragment3">
+    tools:context=".Fragment3">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -20,30 +20,23 @@
         >
 
 
-        <LinearLayout
-            android:id="@+id/data_layout"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:background="@color/transparent_black"
-            android:orientation="vertical"
-
-            app:layout_constraintHeight="0.9"
-            app:layout_constraintHeight_default="percent"
-
-            app:layout_constraintWidth_default="percent"
-            app:layout_constraintWidth_percent="0.9"
-            app:layout_constraintEnd_toEndOf="parent"
-
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-
-            app:layout_constraintBottom_toBottomOf="parent">
-
-            <GridLayout
+        <GridLayout
                 android:id="@+id/grid2"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:layout_weight="0.3"
+                android:background="@color/transparent_black"
+                android:orientation="vertical"
+
+                app:layout_constraintHeight="0.9"
+                app:layout_constraintHeight_default="percent"
+
+                app:layout_constraintWidth_default="percent"
+                app:layout_constraintWidth_percent="0.9"
+                app:layout_constraintEnd_toEndOf="parent"
+
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
                 android:columnCount="3"
                 android:rowCount="6">
 
@@ -53,8 +46,10 @@
                     android:text="@string/day1"
                     android:layout_column="0"
                     android:layout_row="0"
-                    android:layout_columnWeight="1"
+                    android:layout_columnWeight="0.5"
                     android:layout_rowWeight="1"
+                    app:autoSizeTextType="uniform"
+                    android:maxLines="1"
                     android:gravity="center"/>
 
                 <TextView
@@ -62,8 +57,10 @@
                     android:text="@string/day2"
                     android:layout_column="0"
                     android:layout_row="1"
-                    android:layout_columnWeight="1"
+                    android:layout_columnWeight="0.5"
                     android:layout_rowWeight="1"
+                    app:autoSizeTextType="uniform"
+                    android:maxLines="1"
                     android:gravity="center"/>
 
                 <TextView
@@ -71,8 +68,10 @@
                     android:text="@string/day3"
                     android:layout_column="0"
                     android:layout_row="2"
-                    android:layout_columnWeight="1"
+                    android:layout_columnWeight="0.5"
                     android:layout_rowWeight="1"
+                    app:autoSizeTextType="uniform"
+                    android:maxLines="1"
                     android:gravity="center"/>
 
                 <TextView
@@ -80,8 +79,10 @@
                     android:text="@string/day4"
                     android:layout_column="0"
                     android:layout_row="3"
-                    android:layout_columnWeight="1"
+                    android:layout_columnWeight="0.5"
                     android:layout_rowWeight="1"
+                    app:autoSizeTextType="uniform"
+                    android:maxLines="1"
                     android:gravity="center"/>
 
                 <TextView
@@ -89,8 +90,10 @@
                     android:text="@string/day5"
                     android:layout_column="0"
                     android:layout_row="4"
-                    android:layout_columnWeight="1"
+                    android:layout_columnWeight="0.5"
                     android:layout_rowWeight="1"
+                    app:autoSizeTextType="uniform"
+                    android:maxLines="1"
                     android:gravity="center"/>
 
                 <TextView
@@ -98,8 +101,10 @@
                     android:text="@string/day6"
                     android:layout_column="0"
                     android:layout_row="5"
-                    android:layout_columnWeight="1"
+                    android:layout_columnWeight="0.5"
                     android:layout_rowWeight="1"
+                    app:autoSizeTextType="uniform"
+                    android:maxLines="1"
                     android:gravity="center"/>
 
 
@@ -107,10 +112,12 @@
                 <TextView
                     android:id="@+id/weather1"
                     android:text="@string/weather1"
-                    android:layout_column="0"
-                    android:layout_row="1"
-                    android:layout_columnWeight="1"
+                    android:layout_column="1"
+                    android:layout_row="0"
+                    android:layout_columnWeight="0.25"
                     android:layout_rowWeight="1"
+                    app:autoSizeTextType="uniform"
+                    android:maxLines="1"
                     android:gravity="center"/>
 
                 <TextView
@@ -118,8 +125,10 @@
                     android:text="@string/weather2"
                     android:layout_column="1"
                     android:layout_row="1"
-                    android:layout_columnWeight="1"
+                    android:layout_columnWeight="0.25"
                     android:layout_rowWeight="1"
+                    app:autoSizeTextType="uniform"
+                    android:maxLines="1"
                     android:gravity="center"/>
 
                 <TextView
@@ -127,8 +136,10 @@
                     android:text="@string/weather3"
                     android:layout_column="1"
                     android:layout_row="2"
-                    android:layout_columnWeight="1"
+                    android:layout_columnWeight="0.25"
                     android:layout_rowWeight="1"
+                    app:autoSizeTextType="uniform"
+                    android:maxLines="1"
                     android:gravity="center"/>
 
                 <TextView
@@ -136,8 +147,10 @@
                     android:text="@string/weather4"
                     android:layout_column="1"
                     android:layout_row="3"
-                    android:layout_columnWeight="1"
+                    android:layout_columnWeight="0.25"
                     android:layout_rowWeight="1"
+                    app:autoSizeTextType="uniform"
+                    android:maxLines="1"
                     android:gravity="center"/>
 
                 <TextView
@@ -145,8 +158,10 @@
                     android:text="@string/weather5"
                     android:layout_column="1"
                     android:layout_row="4"
-                    android:layout_columnWeight="1"
+                    android:layout_columnWeight="0.25"
                     android:layout_rowWeight="1"
+                    app:autoSizeTextType="uniform"
+                    android:maxLines="1"
                     android:gravity="center"/>
 
                 <TextView
@@ -154,8 +169,10 @@
                     android:text="@string/weather6"
                     android:layout_column="1"
                     android:layout_row="5"
-                    android:layout_columnWeight="1"
+                    android:layout_columnWeight="0.25"
                     android:layout_rowWeight="1"
+                    app:autoSizeTextType="uniform"
+                    android:maxLines="1"
                     android:gravity="center"/>
 
 
@@ -164,11 +181,12 @@
                 <TextView
                     android:id="@+id/temp1"
                     android:text="@string/temp1"
-
                     android:layout_column="2"
                     android:layout_row="0"
-                    android:layout_columnWeight="1"
+                    android:layout_columnWeight="0.25"
                     android:layout_rowWeight="1"
+                    app:autoSizeTextType="uniform"
+                    android:maxLines="1"
                     android:gravity="center"/>
 
                 <TextView
@@ -176,8 +194,10 @@
                     android:text="@string/temp2"
                     android:layout_column="2"
                     android:layout_row="1"
-                    android:layout_columnWeight="1"
+                    android:layout_columnWeight="0.25"
                     android:layout_rowWeight="1"
+                    app:autoSizeTextType="uniform"
+                    android:maxLines="1"
                     android:gravity="center"/>
 
                 <TextView
@@ -185,8 +205,10 @@
                     android:text="@string/temp3"
                     android:layout_column="2"
                     android:layout_row="2"
-                    android:layout_columnWeight="1"
+                    android:layout_columnWeight="0.25"
                     android:layout_rowWeight="1"
+                    app:autoSizeTextType="uniform"
+                    android:maxLines="1"
                     android:gravity="center"/>
 
                 <TextView
@@ -194,8 +216,10 @@
                     android:text="@string/temp4"
                     android:layout_column="2"
                     android:layout_row="3"
-                    android:layout_columnWeight="1"
+                    android:layout_columnWeight="0.25"
                     android:layout_rowWeight="1"
+                    app:autoSizeTextType="uniform"
+                    android:maxLines="1"
                     android:gravity="center"/>
 
                 <TextView
@@ -203,8 +227,10 @@
                     android:text="@string/temp5"
                     android:layout_column="2"
                     android:layout_row="4"
-                    android:layout_columnWeight="1"
+                    android:layout_columnWeight="0.25"
                     android:layout_rowWeight="1"
+                    app:autoSizeTextType="uniform"
+                    android:maxLines="1"
                     android:gravity="center"/>
 
                 <TextView
@@ -212,12 +238,14 @@
                     android:text="@string/temp6"
                     android:layout_column="2"
                     android:layout_row="5"
-                    android:layout_columnWeight="1"
+                    android:layout_columnWeight="0.25"
                     android:layout_rowWeight="1"
+                    app:autoSizeTextType="uniform"
+                    android:maxLines="1"
                     android:gravity="center"/>
             </GridLayout>
 
-        </LinearLayout>
+
 
 
 

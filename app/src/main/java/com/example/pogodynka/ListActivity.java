@@ -34,6 +34,7 @@ public class ListActivity extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences("List", Context.MODE_PRIVATE);
 
 
+
         Set<String> set = sharedPreferences.getStringSet("cities", null);
         if (set != null) {
             items.addAll(set);
@@ -43,6 +44,14 @@ public class ListActivity extends AppCompatActivity {
             list.setAdapter(adapter);
 
         }
+
+
+
+        TextView selectedCity = findViewById(R.id.selectedCity);
+        String str = getString(R.string.selectedCity) + " " + sharedPreferences.getString("SelectedCity",null);
+        selectedCity.setText(str);
+
+
 
         TextView input = findViewById(R.id.cityInput);
         Button add = findViewById(R.id.buttonAdd);
@@ -55,28 +64,23 @@ public class ListActivity extends AppCompatActivity {
                 String city = input.getText().toString();
                 if(!items.contains(city))
                 {
-                    String stringUrl =
-                            "https://api.openweathermap.org/data/2.5/weather?q="+city+"&appid=f593804bcaa9ba0a3077e36ebf63bd6a";
 
-                    JsonThread thread = new JsonThread(stringUrl);
-                    thread.start();
-                    try {
-                        thread.join();
-                    }
-                    catch (Exception ignored) {}
+                    SharedPreferences newCity = getSharedPreferences(city, Context.MODE_PRIVATE);
 
-                    JSONObject json =  thread.getJsonObject();
-                    JsonParser(json,city);
+
+                    JsonThread.getData(city,newCity);
                     items.add(city);
                     ArrayAdapter<String> adapter = new ArrayAdapter<>(ListActivity.this,
                             android.R.layout.simple_list_item_1, items);
-
                     list.setAdapter(adapter);
                     SharedPreferences.Editor editor = sharedPreferences.edit();
                     Set<String> set = new HashSet<>(items);
                     editor.putStringSet("cities", set);
                     editor.putString("SelectedCity", city);
                     editor.apply();
+
+                    String str = getString(R.string.selectedCity) + " " + sharedPreferences.getString("SelectedCity",null);
+                    selectedCity.setText(str);
                 }
                 else {
                     SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -135,15 +139,25 @@ public class ListActivity extends AppCompatActivity {
                 TextView selectedCity = findViewById(R.id.selectedCity);
                 if(items.contains(input.getText().toString()))
                 {
-                    selectedCity.setText("Selected city: " + input.getText().toString());
+
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putString("SelectedCity", input.getText().toString());
+                    editor.apply();
+
+
+                    String str = getString(R.string.selectedCity) + " " + sharedPreferences.getString("SelectedCity",null);
+                    selectedCity.setText(str);
                 }
                else
                    selectedCity.setText("There's not such city on the list");
             }
         });
 
+
+
     }
 
+    /*
 
     public void JsonParser(JSONObject json, String city)
     {
@@ -198,7 +212,7 @@ public class ListActivity extends AppCompatActivity {
 
    private String temperatureParser(Double tmp)
     {
-        Integer res = (int)((tmp -32.0)/1.8);
+        Integer res = (int)(tmp - 	273.15);
         return res + "°C";
     }
 
@@ -222,5 +236,7 @@ public class ListActivity extends AppCompatActivity {
         else return Dir.NNW;
 
     }
+
+     */
 
 }

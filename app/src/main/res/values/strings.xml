@@ -40,6 +40,7 @@
     <string name="buttonAdd"> add </string>
     <string name="buttonRemove"> remove </string>
     <string name="buttonSelect"> select </string>
+    <string name="selectedCity">Selected city:</string>
 
 
 </resources>

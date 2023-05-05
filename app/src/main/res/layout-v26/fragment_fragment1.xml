@@ -142,12 +142,12 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="0.2"
-                        android:orientation="horizontal">
+                        android:orientation="vertical">
 
                         <TextView
                             android:id="@+id/TempMax"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
                             android:layout_weight="0.5"
                             android:gravity="start"
                             android:maxLines="1"
@@ -157,8 +157,8 @@
 
                         <TextView
                             android:id="@+id/TempMin"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
                             android:layout_weight="0.5"
                             android:gravity="start"
                             android:maxLines="1"

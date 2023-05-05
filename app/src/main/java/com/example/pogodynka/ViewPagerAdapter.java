@@ -15,7 +15,6 @@ public class ViewPagerAdapter extends FragmentStateAdapter {
 
 
     private final ArrayList<Fragment> fragments = new ArrayList<>();
-    private final ArrayList<String> fragmentsTitle = new ArrayList<>();
 
     public ViewPagerAdapter(FragmentActivity fragmentActivity)
     {
@@ -35,10 +34,9 @@ public class ViewPagerAdapter extends FragmentStateAdapter {
     }
 
 
-    public void addFragment(Fragment fragment, String fragmentTittle)
+    public void addFragment(Fragment fragment)
     {
         fragments.add(fragment);
-        fragmentsTitle.add(fragmentTittle) ;
     }
 
     public ArrayList<Fragment> getFragments() {

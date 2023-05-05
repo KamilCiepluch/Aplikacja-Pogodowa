@@ -16,16 +16,16 @@ import android.widget.TextView;
 
 public class Fragment1 extends Fragment {
 
-    private static TextView cityName;
-    private static TextView coords;
-    private static TextView currentDate;
-    private static ImageView weatherImg;
-    private static TextView temp;
-    private static TextView tempMin;
-    private static TextView tempMax;
-    private static TextView weatherDesc;
-    private static TextView pressure;
-    private static TextView lastUpdate;
+    private TextView cityName;
+    private TextView coords;
+    private TextView currentDate;
+    private ImageView weatherImg;
+    private TextView temp;
+    private TextView tempMin;
+    private TextView tempMax;
+    private TextView weatherDesc;
+    private TextView pressure;
+    private TextView lastUpdate;
 
 
 
@@ -42,6 +42,7 @@ public class Fragment1 extends Fragment {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_fragment1, container, false);
         initFields(view);
+        update();
         return view;
 
     }
@@ -66,10 +67,21 @@ public class Fragment1 extends Fragment {
 
 
 
-    public void update(String city)
+    public void update()
     {
+
+
+        SharedPreferences info = getActivity()
+                .getSharedPreferences("List", Context.MODE_PRIVATE);
+        String city = info.getString("SelectedCity",null);
+
+        SharedPreferences sharedPreferences = getActivity()
+                .getSharedPreferences(city, Context.MODE_PRIVATE);
+
+
+
+        if(city==null) return;
         cityName.setText(city);
-        SharedPreferences sharedPreferences = getActivity().getSharedPreferences(city, Context.MODE_PRIVATE);
         coords.setText(sharedPreferences.getString("cityCoordinates",""));
 
         //todo poprawic dopsiac obecna date
