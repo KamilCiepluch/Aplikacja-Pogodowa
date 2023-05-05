@@ -1,5 +1,7 @@
 package com.example.pogodynka;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -7,52 +9,13 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link Fragment3#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class Fragment3 extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public Fragment3() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment fragment3.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static Fragment3 newInstance(String param1, String param2) {
-        Fragment3 fragment = new Fragment3();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+
     }
 
     @Override
@@ -61,4 +24,27 @@ public class Fragment3 extends Fragment {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_fragment3, container, false);
     }
+    public void update()
+    {
+        SharedPreferences data = getActivity().getSharedPreferences("List", Context.MODE_PRIVATE);
+        String city = data.getString("SelectedCity",null);
+
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences(city, Context.MODE_PRIVATE);
+        String pStr = getResources().getString(R.string.pressure) + " " + sharedPreferences.getInt("pressure",0);
+        String wDirStr = getResources().getString(R.string.windDir) +" " + sharedPreferences.getString("windDir","");
+        String wSpeedStr = getResources().getString(R.string.windSpeed) +" " + sharedPreferences.getFloat("windSpeed",0);
+        String humStr = getResources().getString(R.string.Humidity) +" " + sharedPreferences.getInt("humidity",0);
+        String visStr = getResources().getString(R.string.Visibility) +" " + sharedPreferences.getInt("visibility",0);
+
+      /*
+        pressure.setText(pStr);
+        dir.setText(wDirStr);
+        speed.setText(wSpeedStr);
+        humidity.setText(humStr);
+        visibility.setText(visStr);
+
+
+       */
+    }
+
 }

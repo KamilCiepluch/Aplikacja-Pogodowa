@@ -36,7 +36,7 @@ public class Fragment2 extends Fragment {
                              Bundle savedInstanceState) {
         View view =  inflater.inflate(R.layout.fragment_fragment2, container, false);
         initFields(view);
-        update("Krakow");
+        update();
         return view;
     }
 
@@ -53,8 +53,11 @@ public class Fragment2 extends Fragment {
         visibility = view.findViewById(R.id.Visibility);
     }
 
-    public void update(  String city)
+    public void update()
     {
+        SharedPreferences data = getActivity().getSharedPreferences("List", Context.MODE_PRIVATE);
+        String city = data.getString("SelectedCity",null);
+
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences(city, Context.MODE_PRIVATE);
         String pStr = getResources().getString(R.string.pressure) + " " + sharedPreferences.getInt("pressure",0);
         String wDirStr = getResources().getString(R.string.windDir) +" " + sharedPreferences.getString("windDir","");

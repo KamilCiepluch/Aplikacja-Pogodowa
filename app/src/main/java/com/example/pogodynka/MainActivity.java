@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -20,33 +21,44 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-    private  TextView cityName;
-    private  TextView coords;
-    private  TextView currentDate;
-    private  ImageView weatherImg;
-    private  TextView temp;
-    private  TextView tempMin;
-    private  TextView tempMax;
-    private  TextView weatherDesc;
-    private  TextView pressure;
-    private  TextView windDir;
-    private  TextView windSpeed;
-    private  TextView humidity;
-    private  TextView visibility;
-    private  TextView lastUpdate;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
         ViewPager2 viewPager = findViewById(R.id.viewPager);
         ViewPagerAdapter adapter = new ViewPagerAdapter(this);
-
         adapter.addFragment(new Fragment1());
         adapter.addFragment(new Fragment2());
         adapter.addFragment(new Fragment3());
         viewPager.setAdapter(adapter);
+
+        viewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+                @Override
+                public void onPageSelected(int position) {
+                    Fragment fragment = adapter.getFragments().get(position);
+                    Log.wtf("test", "fragment: " + fragment);
+
+                    if(fragment!= null)
+                    {
+                        if(fragment instanceof  Fragment1)
+                        {
+                            ((Fragment1) fragment).update();
+                        }
+                        else if(fragment instanceof Fragment2)
+                        {
+                           ((Fragment2) fragment).update();
+                        }
+                        else if(fragment instanceof Fragment3)
+                        {
+                            ((Fragment3) fragment).update();
+                        }
+                    }
+                    super.onPageSelected(position);
+
+                }
+            }
+        );
 
 
 
