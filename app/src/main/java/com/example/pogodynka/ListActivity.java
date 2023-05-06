@@ -27,13 +27,8 @@ public class ListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.list);
 
-
-
-
         ListView list = findViewById(R.id.citieslist);
         SharedPreferences sharedPreferences = getSharedPreferences("List", Context.MODE_PRIVATE);
-
-
 
         Set<String> set = sharedPreferences.getStringSet("cities", null);
         if (set != null) {
@@ -42,16 +37,11 @@ public class ListActivity extends AppCompatActivity {
                     android.R.layout.simple_list_item_1, items);
 
             list.setAdapter(adapter);
-
         }
-
-
 
         TextView selectedCity = findViewById(R.id.selectedCity);
         String str = getString(R.string.selectedCity) + " " + sharedPreferences.getString("SelectedCity",null);
         selectedCity.setText(str);
-
-
 
         TextView input = findViewById(R.id.cityInput);
         Button add = findViewById(R.id.buttonAdd);
@@ -66,8 +56,6 @@ public class ListActivity extends AppCompatActivity {
                 {
 
                     SharedPreferences newCity = getSharedPreferences(city, Context.MODE_PRIVATE);
-
-
                     JsonThread.getData(city,newCity);
                     items.add(city);
                     ArrayAdapter<String> adapter = new ArrayAdapter<>(ListActivity.this,

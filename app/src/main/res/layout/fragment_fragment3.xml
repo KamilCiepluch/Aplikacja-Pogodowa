@@ -15,242 +15,223 @@
         app:layout_constraintTop_toBottomOf="@+id/textView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-
-        >
+        app:layout_constraintEnd_toEndOf="parent">
 
 
-        <GridLayout
-                android:id="@+id/grid2"
-                android:layout_width="0dp"
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/col1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.02" />
+
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/col2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.52" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/col3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.77" />
+
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/col4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.98" />
+
+        <LinearLayout
+            android:id="@+id/firstcol"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@color/transparent_black"
+            android:orientation="vertical"
+
+            app:layout_constraintEnd_toEndOf="@id/col2"
+            app:layout_constraintStart_toStartOf="@id/col1"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+
+
+
+            <TextView
+                android:id="@+id/day1"
+                android:text="@string/day1"
+                android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:background="@color/transparent_black"
-                android:orientation="vertical"
+                android:layout_weight="0.2"
+                app:autoSizeTextType="uniform"
+                android:gravity="center"/>
 
-                app:layout_constraintHeight="0.9"
-                app:layout_constraintHeight_default="percent"
+            <TextView
+                android:id="@+id/day2"
+                android:text="@string/day2"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.2"
+                app:autoSizeTextType="uniform"
+                android:gravity="center"/>
 
-                app:layout_constraintWidth_default="percent"
-                app:layout_constraintWidth_percent="0.9"
-                app:layout_constraintEnd_toEndOf="parent"
+            <TextView
+                android:id="@+id/day3"
+                android:text="@string/day3"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.2"
+                app:autoSizeTextType="uniform"
+                android:gravity="center"/>
 
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                android:columnCount="3"
-                android:rowCount="6">
+            <TextView
+                android:id="@+id/day4"
+                android:text="@string/day4"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.2"
+                app:autoSizeTextType="uniform"
+                android:gravity="center"/>
 
-                <!-- Day -->
-                <TextView
-                    android:id="@+id/day1"
-                    android:text="@string/day1"
-                    android:layout_column="0"
-                    android:layout_row="0"
-                    android:layout_columnWeight="0.5"
-                    android:layout_rowWeight="1"
-                    app:autoSizeTextType="uniform"
-                    android:maxLines="1"
-                    android:gravity="center"/>
-
-                <TextView
-                    android:id="@+id/day2"
-                    android:text="@string/day2"
-                    android:layout_column="0"
-                    android:layout_row="1"
-                    android:layout_columnWeight="0.5"
-                    android:layout_rowWeight="1"
-                    app:autoSizeTextType="uniform"
-                    android:maxLines="1"
-                    android:gravity="center"/>
-
-                <TextView
-                    android:id="@+id/day3"
-                    android:text="@string/day3"
-                    android:layout_column="0"
-                    android:layout_row="2"
-                    android:layout_columnWeight="0.5"
-                    android:layout_rowWeight="1"
-                    app:autoSizeTextType="uniform"
-                    android:maxLines="1"
-                    android:gravity="center"/>
-
-                <TextView
-                    android:id="@+id/day4"
-                    android:text="@string/day4"
-                    android:layout_column="0"
-                    android:layout_row="3"
-                    android:layout_columnWeight="0.5"
-                    android:layout_rowWeight="1"
-                    app:autoSizeTextType="uniform"
-                    android:maxLines="1"
-                    android:gravity="center"/>
-
-                <TextView
-                    android:id="@+id/day5"
-                    android:text="@string/day5"
-                    android:layout_column="0"
-                    android:layout_row="4"
-                    android:layout_columnWeight="0.5"
-                    android:layout_rowWeight="1"
-                    app:autoSizeTextType="uniform"
-                    android:maxLines="1"
-                    android:gravity="center"/>
-
-                <TextView
-                    android:id="@+id/day6"
-                    android:text="@string/day6"
-                    android:layout_column="0"
-                    android:layout_row="5"
-                    android:layout_columnWeight="0.5"
-                    android:layout_rowWeight="1"
-                    app:autoSizeTextType="uniform"
-                    android:maxLines="1"
-                    android:gravity="center"/>
-
-
-        <!-- Weather icon -->
-                <TextView
-                    android:id="@+id/weather1"
-                    android:text="@string/weather1"
-                    android:layout_column="1"
-                    android:layout_row="0"
-                    android:layout_columnWeight="0.25"
-                    android:layout_rowWeight="1"
-                    app:autoSizeTextType="uniform"
-                    android:maxLines="1"
-                    android:gravity="center"/>
-
-                <TextView
-                    android:id="@+id/weather2"
-                    android:text="@string/weather2"
-                    android:layout_column="1"
-                    android:layout_row="1"
-                    android:layout_columnWeight="0.25"
-                    android:layout_rowWeight="1"
-                    app:autoSizeTextType="uniform"
-                    android:maxLines="1"
-                    android:gravity="center"/>
-
-                <TextView
-                    android:id="@+id/weather3"
-                    android:text="@string/weather3"
-                    android:layout_column="1"
-                    android:layout_row="2"
-                    android:layout_columnWeight="0.25"
-                    android:layout_rowWeight="1"
-                    app:autoSizeTextType="uniform"
-                    android:maxLines="1"
-                    android:gravity="center"/>
-
-                <TextView
-                    android:id="@+id/weather4"
-                    android:text="@string/weather4"
-                    android:layout_column="1"
-                    android:layout_row="3"
-                    android:layout_columnWeight="0.25"
-                    android:layout_rowWeight="1"
-                    app:autoSizeTextType="uniform"
-                    android:maxLines="1"
-                    android:gravity="center"/>
-
-                <TextView
-                    android:id="@+id/weather5"
-                    android:text="@string/weather5"
-                    android:layout_column="1"
-                    android:layout_row="4"
-                    android:layout_columnWeight="0.25"
-                    android:layout_rowWeight="1"
-                    app:autoSizeTextType="uniform"
-                    android:maxLines="1"
-                    android:gravity="center"/>
-
-                <TextView
-                    android:id="@+id/weather6"
-                    android:text="@string/weather6"
-                    android:layout_column="1"
-                    android:layout_row="5"
-                    android:layout_columnWeight="0.25"
-                    android:layout_rowWeight="1"
-                    app:autoSizeTextType="uniform"
-                    android:maxLines="1"
-                    android:gravity="center"/>
-
-
-
-                <!-- Temperature -->
-                <TextView
-                    android:id="@+id/temp1"
-                    android:text="@string/temp1"
-                    android:layout_column="2"
-                    android:layout_row="0"
-                    android:layout_columnWeight="0.25"
-                    android:layout_rowWeight="1"
-                    app:autoSizeTextType="uniform"
-                    android:maxLines="1"
-                    android:gravity="center"/>
-
-                <TextView
-                    android:id="@+id/temp2"
-                    android:text="@string/temp2"
-                    android:layout_column="2"
-                    android:layout_row="1"
-                    android:layout_columnWeight="0.25"
-                    android:layout_rowWeight="1"
-                    app:autoSizeTextType="uniform"
-                    android:maxLines="1"
-                    android:gravity="center"/>
-
-                <TextView
-                    android:id="@+id/temp3"
-                    android:text="@string/temp3"
-                    android:layout_column="2"
-                    android:layout_row="2"
-                    android:layout_columnWeight="0.25"
-                    android:layout_rowWeight="1"
-                    app:autoSizeTextType="uniform"
-                    android:maxLines="1"
-                    android:gravity="center"/>
-
-                <TextView
-                    android:id="@+id/temp4"
-                    android:text="@string/temp4"
-                    android:layout_column="2"
-                    android:layout_row="3"
-                    android:layout_columnWeight="0.25"
-                    android:layout_rowWeight="1"
-                    app:autoSizeTextType="uniform"
-                    android:maxLines="1"
-                    android:gravity="center"/>
-
-                <TextView
-                    android:id="@+id/temp5"
-                    android:text="@string/temp5"
-                    android:layout_column="2"
-                    android:layout_row="4"
-                    android:layout_columnWeight="0.25"
-                    android:layout_rowWeight="1"
-                    app:autoSizeTextType="uniform"
-                    android:maxLines="1"
-                    android:gravity="center"/>
-
-                <TextView
-                    android:id="@+id/temp6"
-                    android:text="@string/temp6"
-                    android:layout_column="2"
-                    android:layout_row="5"
-                    android:layout_columnWeight="0.25"
-                    android:layout_rowWeight="1"
-                    app:autoSizeTextType="uniform"
-                    android:maxLines="1"
-                    android:gravity="center"/>
-            </GridLayout>
+            <TextView
+                android:id="@+id/day5"
+                android:text="@string/day5"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.2"
+                app:autoSizeTextType="uniform"
+                android:gravity="center"/>
 
 
 
 
+        </LinearLayout>
 
 
+        <LinearLayout
+            android:id="@+id/secCol"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@color/transparent_black"
+            android:orientation="vertical"
 
+            app:layout_constraintEnd_toEndOf="@id/col3"
+            app:layout_constraintStart_toStartOf="@id/col2"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+
+            <ImageView
+                android:id="@+id/weather1"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.2"
+                app:autoSizeTextType="uniform"
+                android:gravity="center"/>
+
+            <ImageView
+                android:id="@+id/weather2"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.2"
+                app:autoSizeTextType="uniform"
+                android:gravity="center"/>
+
+            <ImageView
+                android:id="@+id/weather3"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.2"
+                app:autoSizeTextType="uniform"
+                android:gravity="center"/>
+
+            <ImageView
+                android:id="@+id/weather4"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.2"
+                app:autoSizeTextType="uniform"
+                android:gravity="center"/>
+
+            <ImageView
+                android:id="@+id/weather5"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.2"
+                app:autoSizeTextType="uniform"
+                android:gravity="center"/>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/thirdCol"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@color/transparent_black"
+            android:orientation="vertical"
+
+            app:layout_constraintEnd_toEndOf="@id/col4"
+            app:layout_constraintStart_toStartOf="@id/col3"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+
+            <TextView
+                android:id="@+id/temp1"
+                android:text="@string/temp1"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.2"
+                app:autoSizeTextType="uniform"
+                android:gravity="center"
+                android:maxLines="1"/>
+
+            <TextView
+                android:id="@+id/temp2"
+                android:text="@string/temp2"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.2"
+                app:autoSizeTextType="uniform"
+                android:gravity="center"
+                android:maxLines="1"/>
+
+            <TextView
+                android:id="@+id/temp3"
+                android:text="@string/temp3"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.2"
+                app:autoSizeTextType="uniform"
+                android:gravity="center"
+                android:maxLines="1"/>
+
+            <TextView
+                android:id="@+id/temp4"
+                android:text="@string/temp4"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.2"
+                app:autoSizeTextType="uniform"
+                android:gravity="center"
+                android:maxLines="1"/>
+
+            <TextView
+                android:id="@+id/temp5"
+                android:text="@string/temp5"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.2"
+                app:autoSizeTextType="uniform"
+                android:gravity="center"
+                android:maxLines="1"/>
+        </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

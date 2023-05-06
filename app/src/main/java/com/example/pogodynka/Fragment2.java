@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -55,21 +56,28 @@ public class Fragment2 extends Fragment {
 
     public void update()
     {
-        SharedPreferences data = getActivity().getSharedPreferences("List", Context.MODE_PRIVATE);
+
+        FragmentActivity activity = getActivity();
+        if(activity==null)  return;
+        SharedPreferences data = activity.getSharedPreferences("List", Context.MODE_PRIVATE);
+        if(data==null) return;
         String city = data.getString("SelectedCity",null);
 
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences(city, Context.MODE_PRIVATE);
-        String pStr = getResources().getString(R.string.pressure) + " " + sharedPreferences.getInt("pressure",0);
+        String pStr = getResources().getString(R.string.pressure) + " " + sharedPreferences.getInt("pressure",0) +"hPa";
         String wDirStr = getResources().getString(R.string.windDir) +" " + sharedPreferences.getString("windDir","");
-        String wSpeedStr = getResources().getString(R.string.windSpeed) +" " + sharedPreferences.getFloat("windSpeed",0);
-        String humStr = getResources().getString(R.string.Humidity) +" " + sharedPreferences.getInt("humidity",0);
-        String visStr = getResources().getString(R.string.Visibility) +" " + sharedPreferences.getInt("visibility",0);
+        String wSpeedStr = getResources().getString(R.string.windSpeed) +" " + sharedPreferences.getFloat("windSpeed",0) + " km/h";
+        String humStr = getResources().getString(R.string.Humidity) +" " + sharedPreferences.getInt("humidity",0) + "%";
+        String visStr = getResources().getString(R.string.Visibility) +" " + sharedPreferences.getInt("visibility",0)+"km";
         pressure.setText(pStr);
         dir.setText(wDirStr);
         speed.setText(wSpeedStr);
         humidity.setText(humStr);
         visibility.setText(visStr);
     }
+
+
+
 
 
 
