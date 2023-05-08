@@ -25,7 +25,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.75" />
+        app:layout_constraintGuide_percent="0.7" />
 
     <Button
         android:id="@+id/buttonAdd"
@@ -37,7 +37,7 @@
         app:layout_constraintBottom_toTopOf="@+id/buttonRemove"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@id/Description" />
 
     <Button
         android:id="@+id/buttonRemove"
@@ -57,10 +57,84 @@
         android:text="@string/buttonSelect"
         android:maxLines="1"
         app:autoSizeTextType="uniform"
-        app:layout_constraintBottom_toTopOf="@+id/guideline"
+        app:layout_constraintBottom_toTopOf="@+id/buttonsL"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
         app:layout_constraintTop_toBottomOf="@+id/buttonRemove" />
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+
+        android:id="@+id/buttonsL"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline2"
+        app:layout_constraintTop_toBottomOf="@+id/buttonSelect"
+        app:layout_constraintBottom_toTopOf="@+id/guideline3"
+        >
+
+
+        <TextView
+            android:id="@+id/unitDesc"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:text="Select units:"
+            app:autoSizeTextType="uniform"
+            android:gravity="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/Kelv"/>
+
+
+        <TextView
+            android:id="@+id/Kelv"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:text="K"
+            android:gravity="center"
+            app:autoSizeTextType="uniform"
+            app:layout_constraintBottom_toTopOf="@id/checkKel"
+            app:layout_constraintEnd_toStartOf="@id/Cel"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/unitDesc" />
+        <TextView
+            android:id="@+id/Cel"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:text="°C"
+            android:gravity="center"
+            app:autoSizeTextType="uniform"
+            app:layout_constraintBottom_toTopOf="@id/checkKel"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/Kelv"
+            app:layout_constraintTop_toBottomOf="@id/unitDesc"/>
+
+        <CheckBox
+            android:id="@+id/checkKel"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:autoSizeTextType="uniform"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/checkCel"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/Kelv"/>
+
+        <CheckBox
+            android:id="@+id/checkCel"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:autoSizeTextType="uniform"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/checkKel"
+            app:layout_constraintTop_toBottomOf="@id/Kelv"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 
 
@@ -82,10 +156,9 @@
         android:layout_height="0dp"
         android:inputType="text"
         android:text="Krakow"
-        app:autoSizeTextType="uniform"
+        android:textSize="32sp"
         android:maxLines="1"
         android:maxLength="50"
-        android:autoSizeTextType="uniform"
         app:layout_constraintVertical_weight="0.6"
         app:layout_constraintBottom_toTopOf="@+id/guideline"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
@@ -95,26 +168,27 @@
 
 
     <TextView
-
         android:id ="@+id/selectedCity"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:text="Selected city: "
         app:autoSizeTextType="uniform"
-        android:maxLines="1"
-        android:autoSizeTextType="uniform"
         app:layout_constraintBottom_toTopOf="@+id/guideline3"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/guideline2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/guideline" />
+
     <ListView
         android:id="@+id/citieslist"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:textSize ="32sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/selectedCity" />
+        app:layout_constraintTop_toBottomOf="@+id/selectedCity"
+        app:layout_constraintVertical_bias="0.0" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

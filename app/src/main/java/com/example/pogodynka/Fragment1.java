@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 
 public class Fragment1 extends Fragment {
@@ -51,8 +52,11 @@ public class Fragment1 extends Fragment {
 
     }
 
-
-
+    @Override
+    public void onResume() {
+        super.onResume();
+        update();
+    }
 
     private void initFields(View view)
     {
@@ -73,50 +77,75 @@ public class Fragment1 extends Fragment {
 
     public void update()
     {
-
-
         FragmentActivity activity = getActivity();
         if(activity==null)  return;
         SharedPreferences info = activity.getSharedPreferences("List", Context.MODE_PRIVATE);
+
         if(info == null) return;
         String city = info.getString("SelectedCity",null);
-        if(city==null) return;
-
-        SharedPreferences sharedPreferences = getActivity().getSharedPreferences(city, Context.MODE_PRIVATE);
-        cityName.setText(city);
-        coords.setText(sharedPreferences.getString("cityCoordinates",""));
-
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-        Date date = new Date();
-        String currentDateStr = getResources().getString(R.string.currentDate) + formatter.format(date);
-        currentDate.setText(currentDateStr);
+        String tempUnit = info.getString("TempUnit", null);
+        if(city!=null)
+        {
+            SharedPreferences sharedPreferences = getActivity().getSharedPreferences(city, Context.MODE_PRIVATE);
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault());
 
 
+            Date date = new Date();
+            String currentDateStr = getResources().getString(R.string.currentDate) + formatter.format(date);
+            String icon = sharedPreferences.getString("icon",null);
+            String tempStr;
+            String tempMinStr;
+            String tempMaxStr;
+            if(tempUnit.equals("Kel"))
+            {
+                tempStr = (sharedPreferences.getInt("temp",0)+273) + "K";
+                tempMinStr=getResources().getString(R.string.temp_min)
+                        + (sharedPreferences.getInt( "tempMin",0)+273) + "K";
+                tempMaxStr=getResources().getString(R.string.temp_max)
+                        + (sharedPreferences.getInt( "tempMax",0)+273) + "K";
+            }
+            else {
 
-        //todo check first json
-        String icon = sharedPreferences.getString("icon",null);
-        if(icon!=null) {
-            weatherImg.setImageResource(getImageID(icon));
+                tempStr = sharedPreferences.getInt("temp",0) + "°C";
+                tempMinStr =getResources().getString(R.string.temp_min)
+                        + sharedPreferences.getInt( "tempMin",0) + "°C";
+                tempMaxStr=getResources().getString(R.string.temp_max)
+                        + sharedPreferences.getInt( "tempMax",0) + "°C";
+            }
+
+            String pressureStr = getResources().getString(R.string.pressure)
+                    + sharedPreferences.getInt("pressure",0) + "hPa";
+            String lastUpdateStr = getResources().getString(R.string.update_time) + sharedPreferences.getString("UpdateTime","");
+
+
+            cityName.setText(city);
+            coords.setText(sharedPreferences.getString("cityCoordinates",""));
+            currentDate.setText(currentDateStr);
+            temp.setText(tempStr );
+            tempMin.setText(tempMinStr);
+            tempMax.setText(tempMaxStr);
+            weatherDesc.setText(sharedPreferences.getString("weather",""));
+            pressure.setText(pressureStr);
+            lastUpdate.setText(lastUpdateStr);
+            if(icon!=null) {
+                weatherImg.setImageResource(getImageID(icon));
+            }
+        }
+        else
+        {
+            cityName.setText(getString(R.string.noData));
+            coords.setText("");
+            currentDate.setText("");
+            temp.setText("" );
+            tempMin.setText("");
+            tempMax.setText("");
+            weatherDesc.setText("");
+            pressure.setText("");
+            lastUpdate.setText("");
+            weatherImg.setImageResource(0);
         }
 
 
-
-        String tempStr = sharedPreferences.getString("temp","") + "°C";
-        String tempMinStr =getResources().getString(R.string.temp_min)
-                + sharedPreferences.getString( "tempMin","") + "°C";
-        String tempMaxStr =getResources().getString(R.string.temp_max)
-                + sharedPreferences.getString( "tempMax","") + "°C";
-
-        String pressureStr = getResources().getString(R.string.pressure)
-                + sharedPreferences.getInt("pressure",0) + "hPa";
-        String lastUpdateStr = getResources().getString(R.string.update_time) + sharedPreferences.getString("UpdateTime","");
-
-        temp.setText(tempStr );
-        tempMin.setText(tempMinStr);
-        tempMax.setText(tempMaxStr);
-        weatherDesc.setText(sharedPreferences.getString("weather",""));
-        pressure.setText(pressureStr);
-        lastUpdate.setText(lastUpdateStr);
     }
 
 

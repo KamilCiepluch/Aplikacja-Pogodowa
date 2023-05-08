@@ -2,6 +2,10 @@
     <string name="app_name">Pogodynka</string>
     <!-- TODO: Remove or change this placeholder text -->
 
+    <string name="noData"> No data to show </string>
+    <string name="menu"> Menu</string>
+    <string name="refresh"> refresh</string>
+    <string name="notConnected"> No internet Connection </string>
     <string name="update_time"> Updated: </string>
     <string name="temp_max"> MIN: </string>
     <string name="temp_min"> MIN: </string>

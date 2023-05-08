@@ -1,6 +1,5 @@
 package com.example.pogodynka;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -12,7 +11,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 
@@ -41,9 +39,11 @@ public class Fragment2 extends Fragment {
         return view;
     }
 
-
-
-
+    @Override
+    public void onResume() {
+        super.onResume();
+        update();
+    }
 
     private void initFields(View view)
     {
@@ -63,17 +63,30 @@ public class Fragment2 extends Fragment {
         if(data==null) return;
         String city = data.getString("SelectedCity",null);
 
-        SharedPreferences sharedPreferences = getActivity().getSharedPreferences(city, Context.MODE_PRIVATE);
-        String pStr = getResources().getString(R.string.pressure) + " " + sharedPreferences.getInt("pressure",0) +"hPa";
-        String wDirStr = getResources().getString(R.string.windDir) +" " + sharedPreferences.getString("windDir","");
-        String wSpeedStr = getResources().getString(R.string.windSpeed) +" " + sharedPreferences.getFloat("windSpeed",0) + " km/h";
-        String humStr = getResources().getString(R.string.Humidity) +" " + sharedPreferences.getInt("humidity",0) + "%";
-        String visStr = getResources().getString(R.string.Visibility) +" " + sharedPreferences.getInt("visibility",0)+"km";
-        pressure.setText(pStr);
-        dir.setText(wDirStr);
-        speed.setText(wSpeedStr);
-        humidity.setText(humStr);
-        visibility.setText(visStr);
+        if(city!=null)
+        {
+            SharedPreferences sharedPreferences = getActivity().getSharedPreferences(city, Context.MODE_PRIVATE);
+            String pStr = getResources().getString(R.string.pressure) + " " + sharedPreferences.getInt("pressure",0) +"hPa";
+            String wDirStr = getResources().getString(R.string.windDir) +" " + sharedPreferences.getString("windDir","");
+            String wSpeedStr = getResources().getString(R.string.windSpeed) +" " + sharedPreferences.getFloat("windSpeed",0) + " km/h";
+            String humStr = getResources().getString(R.string.Humidity) +" " + sharedPreferences.getInt("humidity",0) + "%";
+            String visStr = getResources().getString(R.string.Visibility) +" " + sharedPreferences.getInt("visibility",0)+"km";
+            pressure.setText(pStr);
+            dir.setText(wDirStr);
+            speed.setText(wSpeedStr);
+            humidity.setText(humStr);
+            visibility.setText(visStr);
+        }
+        else
+        {
+            pressure.setText(getString(R.string.noData));
+            dir.setText("");
+            speed.setText("");
+            humidity.setText("");
+            visibility.setText("");
+        }
+
+
     }
 
 

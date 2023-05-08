@@ -2,13 +2,11 @@ package com.example.pogodynka;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.icu.text.SymbolTable;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,12 +39,13 @@ public class Fragment3 extends Fragment {
         initFields(view);
         update();
         return view;
-
     }
 
-
-
-
+    @Override
+    public void onResume() {
+        super.onResume();
+        update();
+    }
 
     private void initFields(View view)
     {
@@ -80,40 +79,63 @@ public class Fragment3 extends Fragment {
 
     public void update()
     {
-
         FragmentActivity activity = getActivity();
         if(activity==null)  return;
         SharedPreferences data = activity.getSharedPreferences("List", Context.MODE_PRIVATE);
-        if(data==null) return;
         String city = data.getString("SelectedCity",null);
-
-        SharedPreferences sharedPreferences = activity.getSharedPreferences(city, Context.MODE_PRIVATE);
-        if(sharedPreferences==null) return;
-        int i=0;
-        for(TextView tmp: temps)
+        if(city!=null)
         {
-            String temp = sharedPreferences.getString("temp" +i,"") + "°C";
-            tmp.setText(temp);
-            i++;
-        }
-        i=0;
-        for(TextView date: days)
-        {
-            String temp = sharedPreferences.getString("date" +i,"");
-            date.setText(temp);
-            i++;
-        }
-
-        i=0;
-        for(ImageView imageView:weatherIcons)
-        {
-            String temp = sharedPreferences.getString("icon" +i,null);
-            if(temp!=null)
+            String tempUnit = data.getString("TempUnit", null);
+            if(tempUnit==null) return;
+            SharedPreferences sharedPreferences = activity.getSharedPreferences(city, Context.MODE_PRIVATE);
+            if(sharedPreferences==null) return;
+            int i=0;
+            for(TextView tmp: temps)
             {
-                imageView.setImageResource(getImageID(temp));
+                String temp;
+                if(tempUnit.equals("Kel"))
+                    temp = (sharedPreferences.getInt("temp" +i,0)+273) + "K";
+                else
+                    temp =  (sharedPreferences.getInt("temp" +i,0)) + "°C";
+
+                tmp.setText(temp);
+                i++;
             }
-            i++;
+            i=0;
+            for(TextView date: days)
+            {
+                String temp = sharedPreferences.getString("date" +i,"");
+                date.setText(temp);
+                i++;
+            }
+            i=0;
+            for(ImageView imageView:weatherIcons)
+            {
+                String temp = sharedPreferences.getString("icon" +i,null);
+                if(temp!=null)
+                {
+                    imageView.setImageResource(getImageID(temp));
+                }
+                i++;
+            }
         }
+        else
+        {
+            for(TextView tmp: temps)
+                tmp.setText("");
+
+            for(TextView date: days)
+                date.setText("");
+
+            for(ImageView imageView:weatherIcons)
+                imageView.setImageResource(0);
+
+            days.get(0).setText(getString(R.string.noData));
+
+        }
+
+
+
     }
 
 

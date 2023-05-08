@@ -70,7 +70,8 @@
                 android:layout_height="0dp"
                 android:layout_weight="0.2"
                 app:autoSizeTextType="uniform"
-                android:gravity="center"/>
+                     android:gravity="center"
+            android:textColor="@color/white"/>
 
             <TextView
                 android:id="@+id/day2"
@@ -79,7 +80,8 @@
                 android:layout_height="0dp"
                 android:layout_weight="0.2"
                 app:autoSizeTextType="uniform"
-                android:gravity="center"/>
+                     android:gravity="center"
+            android:textColor="@color/white"/>
 
             <TextView
                 android:id="@+id/day3"
@@ -88,7 +90,8 @@
                 android:layout_height="0dp"
                 android:layout_weight="0.2"
                 app:autoSizeTextType="uniform"
-                android:gravity="center"/>
+                     android:gravity="center"
+            android:textColor="@color/white"/>
 
             <TextView
                 android:id="@+id/day4"
@@ -97,7 +100,8 @@
                 android:layout_height="0dp"
                 android:layout_weight="0.2"
                 app:autoSizeTextType="uniform"
-                android:gravity="center"/>
+                     android:gravity="center"
+            android:textColor="@color/white"/>
 
             <TextView
                 android:id="@+id/day5"
@@ -106,7 +110,8 @@
                 android:layout_height="0dp"
                 android:layout_weight="0.2"
                 app:autoSizeTextType="uniform"
-                android:gravity="center"/>
+                     android:gravity="center"
+            android:textColor="@color/white"/>
 
 
 
@@ -133,7 +138,8 @@
                 android:layout_height="0dp"
                 android:layout_weight="0.2"
                 app:autoSizeTextType="uniform"
-                android:gravity="center"/>
+                     android:gravity="center"
+            android:textColor="@color/white"/>
 
             <ImageView
                 android:id="@+id/weather2"
@@ -141,7 +147,8 @@
                 android:layout_height="0dp"
                 android:layout_weight="0.2"
                 app:autoSizeTextType="uniform"
-                android:gravity="center"/>
+                     android:gravity="center"
+            android:textColor="@color/white"/>
 
             <ImageView
                 android:id="@+id/weather3"
@@ -149,7 +156,8 @@
                 android:layout_height="0dp"
                 android:layout_weight="0.2"
                 app:autoSizeTextType="uniform"
-                android:gravity="center"/>
+                     android:gravity="center"
+            android:textColor="@color/white"/>
 
             <ImageView
                 android:id="@+id/weather4"
@@ -157,7 +165,8 @@
                 android:layout_height="0dp"
                 android:layout_weight="0.2"
                 app:autoSizeTextType="uniform"
-                android:gravity="center"/>
+                     android:gravity="center"
+            android:textColor="@color/white"/>
 
             <ImageView
                 android:id="@+id/weather5"
@@ -165,7 +174,8 @@
                 android:layout_height="0dp"
                 android:layout_weight="0.2"
                 app:autoSizeTextType="uniform"
-                android:gravity="center"/>
+                     android:gravity="center"
+            android:textColor="@color/white"/>
         </LinearLayout>
 
 
@@ -189,7 +199,8 @@
                 android:layout_height="0dp"
                 android:layout_weight="0.2"
                 app:autoSizeTextType="uniform"
-                android:gravity="center"
+                     android:gravity="center"
+            android:textColor="@color/white"
                 android:maxLines="1"/>
 
             <TextView
@@ -199,7 +210,8 @@
                 android:layout_height="0dp"
                 android:layout_weight="0.2"
                 app:autoSizeTextType="uniform"
-                android:gravity="center"
+                     android:gravity="center"
+            android:textColor="@color/white"
                 android:maxLines="1"/>
 
             <TextView
@@ -209,7 +221,8 @@
                 android:layout_height="0dp"
                 android:layout_weight="0.2"
                 app:autoSizeTextType="uniform"
-                android:gravity="center"
+                     android:gravity="center"
+            android:textColor="@color/white"
                 android:maxLines="1"/>
 
             <TextView
@@ -219,7 +232,8 @@
                 android:layout_height="0dp"
                 android:layout_weight="0.2"
                 app:autoSizeTextType="uniform"
-                android:gravity="center"
+                     android:gravity="center"
+            android:textColor="@color/white"
                 android:maxLines="1"/>
 
             <TextView
@@ -229,7 +243,8 @@
                 android:layout_height="0dp"
                 android:layout_weight="0.2"
                 app:autoSizeTextType="uniform"
-                android:gravity="center"
+                     android:gravity="center"
+            android:textColor="@color/white"
                 android:maxLines="1"/>
         </LinearLayout>
 

@@ -1,12 +1,7 @@
 package com.example.pogodynka;
 
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
-import android.widget.ArrayAdapter;
-
-import com.google.gson.JsonParser;
-
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
@@ -14,16 +9,13 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.sql.Timestamp;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.GregorianCalendar;
-import java.util.HashSet;
-import java.util.List;
 import java.util.Locale;
-import java.util.Set;
 
 public class JsonThread extends Thread {
 
@@ -65,13 +57,11 @@ public class JsonThread extends Thread {
             String json = stringBuilder.toString();
             jsonObject = new JSONObject(json);
 
-            // Tutaj można dokonać operacji na danych z pliku JSON
+            urlConnection.disconnect();
 
         } catch (Exception e) {
-            // Obsługa wyjątków
-            e.printStackTrace();
-        } finally {
-            // Zamykanie połączenia
+            if(urlConnection!=null)
+                urlConnection.disconnect();
             if(urlConnection!=null)
                 urlConnection.disconnect();
         }
@@ -87,11 +77,12 @@ public class JsonThread extends Thread {
 
 
 
-    public static void getData(String city,SharedPreferences sharedPreferences)
+    public static int getData(String city,SharedPreferences sharedPreferences)
     {
 
         String stringUrl =
-                "https://api.openweathermap.org/data/2.5/weather?q="+city+"&appid=f593804bcaa9ba0a3077e36ebf63bd6a&units=metric";
+                "https://api.openweathermap.org/data/2.5/weather?q="+city+"&appid=" +
+                        "997dd9b3e79c7bff98b52e5df952b16d" + "&units=metric";
 
         JsonThread thread = new JsonThread(stringUrl);
         thread.start();
@@ -101,6 +92,7 @@ public class JsonThread extends Thread {
         catch (Exception ignored) {}
 
         JSONObject json =  thread.getJsonObject();
+        if(json==null) return -1;
         thread.JsonParser(json,sharedPreferences);
 
         try {
@@ -112,16 +104,18 @@ public class JsonThread extends Thread {
             thread1.start();
             thread1.join();
             JSONObject json2 =  thread1.getJsonObject();
+            if(json2==null) return -2;
             thread1.JsonParserWeek(json2,sharedPreferences);
 
         }
         catch (Exception e)
         {
             Log.wtf("error", e.getMessage());
+            return -1;
         }
 
 
-
+        return 0;
     }
 
     public void JsonParser(JSONObject json, SharedPreferences sharedPreferences)
@@ -131,7 +125,7 @@ public class JsonThread extends Thread {
             Double lon = (Double) json.getJSONObject("coord").get("lon");
             Double lat = (Double) json.getJSONObject("coord").get("lat");
             Integer pressure = (Integer) json.getJSONObject("main").get("pressure");
-            Integer visibility =((Integer) json.get("visibility"))/1000;
+            int visibility =((Integer) json.get("visibility"))/1000;
             Integer humidity = (Integer) json.getJSONObject("main").get("humidity");
             String weather =  (String) json.getJSONArray("weather").getJSONObject(0).get("main");
             String weatherDesc =  (String) json.getJSONArray("weather").getJSONObject(0).get("description");
@@ -148,7 +142,7 @@ public class JsonThread extends Thread {
             String windDir = windDirParser(Double.valueOf(windDirTmp)).toString();
 
 
-            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault());
             Date date = new Date();
             String currentDateStr = formatter.format(date);
 
@@ -158,15 +152,15 @@ public class JsonThread extends Thread {
 
 
             editor.putString("UpdateTime", currentDateStr);
-            editor.putString("temp", Integer.toString(Math.round(temp.floatValue())));
-            editor.putString("tempMax", Integer.toString(Math.round(tempMax.floatValue())));
-            editor.putString("tempMin", Integer.toString(Math.round(tempMin.floatValue())));
+            editor.putInt("temp", (Math.round(temp.floatValue())));
+            editor.putInt("tempMax", (Math.round(tempMax.floatValue())));
+            editor.putInt("tempMin", (Math.round(tempMin.floatValue())));
             editor.putString("cityCoordinates",lat + " "+ lon);
             editor.putInt("pressure",pressure);
             editor.putString("weather",weather);
             editor.putString("weatherDesc",weatherDesc);
             editor.putString("windDir",windDir);
-            editor.putFloat("windSpeed", new Float(windSpeed));
+            editor.putFloat("windSpeed", windSpeed.floatValue());
             editor.putInt("humidity",humidity);
             editor.putInt("visibility",visibility);
             editor.putString("icon",icon);
@@ -183,18 +177,18 @@ public class JsonThread extends Thread {
             SharedPreferences.Editor editor = sharedPreferences.edit();
             for(int i=0; i<5; i++)
             {
-                Double t  =  (Double) json.getJSONArray("list").getJSONObject(i*8+3).getJSONObject("main").get("temp");
-                String temp = Integer.toString(Math.round(t.floatValue()));
-                String weather =(String) json.getJSONArray("list").getJSONObject(i*8+3).getJSONArray("weather").getJSONObject(0).get("main");
-                String desc = (String) json.getJSONArray("list").getJSONObject(i*8+3).getJSONArray("weather").getJSONObject(0).get("description");
-                String icon = (String) json.getJSONArray("list").getJSONObject(i*8+3).getJSONArray("weather").getJSONObject(0).get("icon");
-                String d = (String) json.getJSONArray("list").getJSONObject(i*8+3).get("dt_txt");
+                Double t  =  (Double) json.getJSONArray("list").getJSONObject(i*8).getJSONObject("main").get("temp");
+                int temp = (Math.round(t.floatValue()));
+                String weather =(String) json.getJSONArray("list").getJSONObject(i*8).getJSONArray("weather").getJSONObject(0).get("main");
+                String desc = (String) json.getJSONArray("list").getJSONObject(i*8).getJSONArray("weather").getJSONObject(0).get("description");
+                String icon = (String) json.getJSONArray("list").getJSONObject(i*8).getJSONArray("weather").getJSONObject(0).get("icon");
+                String d = (String) json.getJSONArray("list").getJSONObject(i*8).get("dt_txt");
 
                 int year = Integer.parseInt(d.substring(0,4));
                 int month = Integer.parseInt(d.substring(5,7));
                 int day = Integer.parseInt(d.substring(8,10));
                 String date = getDayString( new GregorianCalendar(year,month-1, day).getTime(), Locale.US);
-                editor.putString("temp" + i, temp);
+                editor.putInt("temp" + i, temp);
                 editor.putString("weather"+i,weather);
                 editor.putString("desc"+i,desc);
                 editor.putString("icon"+i,icon);

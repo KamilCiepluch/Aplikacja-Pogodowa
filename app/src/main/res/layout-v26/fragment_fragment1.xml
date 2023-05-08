@@ -39,9 +39,7 @@
 
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-
             app:layout_constraintBottom_toBottomOf="parent">
-
 
             <TextView
                 android:id="@+id/city"
@@ -148,7 +146,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
                             android:layout_weight="0.5"
-                            android:gravity="start"
+                            android:gravity="center"
                             android:maxLines="1"
                             android:text="@string/temp_max"
                             android:textColor="@color/white"
@@ -159,7 +157,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
                             android:layout_weight="0.5"
-                            android:gravity="start"
+                            android:gravity="center"
                             android:maxLines="1"
                             android:text="@string/temp_min"
                             android:textColor="@color/white"

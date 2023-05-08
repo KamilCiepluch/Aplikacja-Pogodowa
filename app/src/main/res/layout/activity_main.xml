@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:background="@drawable/sun">
+    android:background="@drawable/background2jpg">
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_horizontal"
@@ -14,6 +14,25 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.94" />
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/row0"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.09" />
+
+    <TextView
+
+        android:id="@+id/InternetConnection"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="center"
+        app:autoSizeTextType="uniform"
+        app:layout_constraintBottom_toTopOf="@+id/row0"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
 
     <androidx.viewpager2.widget.ViewPager2
 
@@ -24,7 +43,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/guideline_horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@id/row0" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/bottom_layout"
@@ -42,7 +61,7 @@
             android:layout_height="match_parent"
             android:layout_marginStart="25sp"
             android:layout_marginEnd="25sp"
-            android:text="@string/temp_max"
+            android:text="@string/menu"
             android:background="@color/black"
             android:textColor="@color/white"
             app:autoSizeTextType="uniform"
@@ -57,7 +76,7 @@
             android:layout_height="match_parent"
             android:layout_marginStart="25sp"
             android:layout_marginEnd="25sp"
-            android:text="refresh"
+            android:text="@string/refresh"
             android:background="@color/black"
             android:textColor="@color/white"
             app:autoSizeTextType="uniform"
