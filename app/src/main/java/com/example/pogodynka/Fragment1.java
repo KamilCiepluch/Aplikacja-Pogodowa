@@ -148,6 +148,22 @@ public class Fragment1 extends Fragment {
 
     }
 
+    public void updateDate()
+    {
+        FragmentActivity activity = getActivity();
+        if(activity==null)  return;
+        SharedPreferences info = activity.getSharedPreferences("List", Context.MODE_PRIVATE);
+        if(info == null) return;
+        String city = info.getString("SelectedCity",null);
+        if(city!=null)
+        {
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault());
+            Date date = new Date();
+            String currentDateStr = getResources().getString(R.string.currentDate) + formatter.format(date);
+            currentDate.setText(currentDateStr);
+        }
+
+    }
 
     public int getImageID(String name)
     {

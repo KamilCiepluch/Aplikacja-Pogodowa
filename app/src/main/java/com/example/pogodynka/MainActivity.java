@@ -20,6 +20,8 @@ public class MainActivity extends AppCompatActivity {
 
     final Long secondsToUpdate = 300L;
     private UpdateThread dataUpdateThread;
+    private UpdateTimeThread currentTimeThread;
+
     ViewPagerAdapter adapter;
     TextView internetConnection;
     Boolean isTablet;
@@ -32,11 +34,12 @@ public class MainActivity extends AppCompatActivity {
         isTablet = getResources().getBoolean(R.bool.is_tablet);
 
         internetConnection = findViewById(R.id.InternetConnection);
-
         if(isNetworkAvailable())
             internetConnection.setText("");
         else
             internetConnection.setText(R.string.notConnected);
+
+
 
 
         if (!isTablet){
@@ -120,12 +123,27 @@ public class MainActivity extends AppCompatActivity {
 
             Log.wtf("Thread test", "I destroyed listening thread");
         }
+
+        if(currentTimeThread!=null && currentTimeThread.isAlive())
+        {
+            currentTimeThread.stopThread();
+            try {
+                currentTimeThread.join();
+            }catch (Exception ignored){}
+
+            Log.wtf("Thread test", "I destroyed listening thread");
+        }
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         ArrayList<Fragment> fragments ;
+        if(isNetworkAvailable())
+            internetConnection.setText("");
+        else
+            internetConnection.setText(R.string.notConnected);
+
         if(isTablet)
         {
             fragments = new ArrayList<>();
@@ -147,6 +165,14 @@ public class MainActivity extends AppCompatActivity {
             dataUpdateThread.start();
             Log.wtf("Thread test", "I created new listening thread");
         }
+
+        if(currentTimeThread== null)
+        {
+
+            currentTimeThread = new UpdateTimeThread(this,fragments);
+            currentTimeThread.start();
+            Log.wtf("Thread test", "I created new listening thread");
+        }
     }
 
     @Override
@@ -162,10 +188,27 @@ public class MainActivity extends AppCompatActivity {
             Log.wtf("Thread test", "I destroyed listening thread");
         }
 
+        if(currentTimeThread!=null && currentTimeThread.isAlive())
+        {
+            currentTimeThread.stopThread();
+            try {
+                currentTimeThread.join();
+            }catch (Exception ignored){}
+            currentTimeThread = null;
+            Log.wtf("Thread test", "I destroyed listening thread");
+        }
+
+
+
     }
 
     void refreshData()
     {
+        if(isNetworkAvailable())
+            internetConnection.setText("");
+        else
+            internetConnection.setText(R.string.notConnected);
+
         String city = getSelectedCity();
         if(city==null) return;
         SharedPreferences cityToUpdate = getSharedPreferences(city, Context.MODE_PRIVATE);
