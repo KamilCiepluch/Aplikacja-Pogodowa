@@ -44,7 +44,7 @@ public class UpdateTimeThread extends  Thread{
                 sleep(60 *1000);
 
             }catch (Exception e){
-                Log.i("Thread wake", "Wake up sleepy Joe");
+                Log.i("Thread wake", "Wake up Update time Thread");
             }
         }
         Log.wtf("test", "Thread finished");

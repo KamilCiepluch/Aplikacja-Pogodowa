@@ -7,7 +7,7 @@
     <string name="refresh"> refresh</string>
     <string name="notConnected"> No internet Connection </string>
     <string name="update_time"> Updated: </string>
-    <string name="temp_max"> MIN: </string>
+    <string name="temp_max"> MAX: </string>
     <string name="temp_min"> MIN: </string>
     <string name="city_name">Krakow </string>
     <string name="currentDate"> Obecna data: </string>

@@ -40,7 +40,7 @@ public class UpdateThread extends Thread{
                 sleep(timeToUpdate);
 
             }catch (Exception e){
-                Log.i("Thread wake", "Wake up sleepy Joe");
+                Log.i("Thread wake", "Wake up UpdateThread");
             }
         }
         Log.wtf("test", "Thread finished");

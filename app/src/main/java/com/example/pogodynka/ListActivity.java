@@ -2,13 +2,19 @@ package com.example.pogodynka;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -60,7 +66,7 @@ public class ListActivity extends AppCompatActivity {
         TextView input = findViewById(R.id.cityInput);
         Button add = findViewById(R.id.buttonAdd);
         add.setOnClickListener(view -> {
-            String city = input.getText().toString();
+            String city = input.getText().toString().trim().toUpperCase();
             if(!items.contains(city))
             {
                 SharedPreferences newCity = getSharedPreferences(city, Context.MODE_PRIVATE);
@@ -90,32 +96,52 @@ public class ListActivity extends AppCompatActivity {
 
         Button remove = findViewById(R.id.buttonRemove);
         remove.setOnClickListener(view -> {
-            String city = input.getText().toString();
-            if(items.contains(city))
+            String city = sharedPreferences.getString("SelectedCity",null);
+
+            if(items.contains(city) && city!=null)
             {
-                items.remove(city);
-                MyListAdapter adapter = new MyListAdapter(this,32,items);
 
-                list.setAdapter(adapter);
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                Set<String> set12 = new HashSet<>(items);
-                editor.putStringSet("cities", set12);
-                if(!items.isEmpty())
-                    editor.putString("SelectedCity", items.get(0));
-                else
-                    editor.putString("SelectedCity", null);
-                editor.apply();
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setTitle("Potwierdzenie");
+                builder.setMessage("Czy na pewno chcesz kontynuować?");
+                builder.setPositiveButton("Tak", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        items.remove(city);
+                        MyListAdapter adapter = new MyListAdapter(ListActivity.this,32,items);
+
+                        list.setAdapter(adapter);
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        Set<String> set12 = new HashSet<>(items);
+                        editor.putStringSet("cities", set12);
+                        if(!items.isEmpty())
+                            editor.putString("SelectedCity", items.get(0));
+                        else
+                            editor.putString("SelectedCity", null);
+                        editor.apply();
 
 
-                SharedPreferences cityData = getSharedPreferences(city, Context.MODE_PRIVATE);
-                if(cityData!=null)
-                {
-                    SharedPreferences.Editor editorTmp = cityData.edit();
-                    editorTmp.clear();
-                    editorTmp.apply();
-                }
-                String str1 = getString(R.string.selectedCity) + " " + sharedPreferences.getString("SelectedCity",null);
-                selectedCity.setText(str1);
+                        SharedPreferences cityData = getSharedPreferences(city, Context.MODE_PRIVATE);
+                        if(cityData!=null)
+                        {
+                            SharedPreferences.Editor editorTmp = cityData.edit();
+                            editorTmp.clear();
+                            editorTmp.apply();
+                        }
+                        String str1 = getString(R.string.selectedCity) + " " + sharedPreferences.getString("SelectedCity",null);
+                        selectedCity.setText(str1);
+                    }
+                });
+                builder.setNegativeButton("Nie", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // Tutaj umieść kod, który ma być wykonany po kliknięciu przycisku "Nie"
+                        dialog.dismiss();
+                    }
+                });
+                AlertDialog dialog = builder.create();
+                dialog.show();
+
+
             }
         });
 
@@ -127,13 +153,12 @@ public class ListActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 TextView selectedCity = findViewById(R.id.selectedCity);
-                if(items.contains(input.getText().toString()))
+                if(items.contains(input.getText().toString().trim().toUpperCase()))
                 {
 
                     SharedPreferences.Editor editor = sharedPreferences.edit();
-                    editor.putString("SelectedCity", input.getText().toString());
+                    editor.putString("SelectedCity", input.getText().toString().trim().toUpperCase());
                     editor.apply();
-
 
                     String str = getString(R.string.selectedCity) + " " + sharedPreferences.getString("SelectedCity",null);
                     selectedCity.setText(str);
@@ -173,6 +198,27 @@ public class ListActivity extends AppCompatActivity {
                 }
             }
         });
+
+
+
+
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String selectedItemText = (String) parent.getItemAtPosition(position);
+                if(selectedItemText!=null)
+                {
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putString("SelectedCity",selectedItemText );
+                    editor.apply();
+                    String str = getString(R.string.selectedCity) + " " + sharedPreferences.getString("SelectedCity",null);
+                    selectedCity.setText(str);
+                }
+            }
+        });
+
+
     }
+
 
 }
