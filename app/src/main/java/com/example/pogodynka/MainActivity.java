@@ -18,6 +18,7 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
 
 
+
     final Long secondsToUpdate = 300L;
     private UpdateThread dataUpdateThread;
     private UpdateTimeThread currentTimeThread;

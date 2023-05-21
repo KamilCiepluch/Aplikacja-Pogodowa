@@ -25,7 +25,6 @@ public class JsonThread extends Thread {
     {
         stringUrl = url;
     }
-
     @Override
     public void run()
     {
